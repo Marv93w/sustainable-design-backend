@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 const commentRoutes = require("./routes/comment");
 require('dotenv').config()
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 5050
 const router = express.Router(); 
 app.use(cors())
 app.use(express.json());
