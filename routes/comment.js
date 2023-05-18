@@ -46,4 +46,17 @@ router.post("/", (req, res) => {
     res.status(201).json(newComment);
 });
 
+router.delete("/:id", (req, res) => {
+    const comments = readCommentsFile();
+    const commentIndex = comments.findIndex((c) => c.id == req.params.id);
+  
+    if (commentIndex === -1) {
+      res.status(404).json({ message: "Comment not found" });
+    } else {
+      const deletedComment = comments.splice(commentIndex, 1)[0];
+      fs.writeFileSync("./data/comments.json", JSON.stringify(comments));
+      res.json(deletedComment);
+    }
+  });
+
 module.exports = router;
